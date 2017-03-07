@@ -1,0 +1,64 @@
+{% block page %}
+<div id="wfs-function-preview" data-module="wfs_function"
+    data-module-url="{{ resource.get('url') }}" style="height: 500px;">
+    <div class="span4">
+    <div id="bbox">
+    <label for="bbox">WKT Geometry (Use Map)</label>
+    <input name="bbox" type="text" disabled>
+    <a id="drawbbox" class="btn drawbbox">Draw Rectangle</a><a class="btn drawpoint">Create Point</a>
+    </div> <br />
+    <div id="dist">
+    <label for="dist">Distance</label> 
+    <input name="dist" type='text'>
+    </div>
+    <label for="function-type">Function</label>
+    <select id="function" name="function-type">
+       <option value="WITHIN">Within (Polygon)</option>
+       <option value="CONTAINS">Contains (Point)</option>
+       <option value="INTERSECTS">Intersects (Polygon)</option>
+       <option value="OVERLAPS">Overlaps (Polygon)</option>
+       <option value="DWITHIN">DWithin (Point and Distance)</option>
+    </select>
+    <label for="coord-sys">Return Coordinate System</label>
+    <select id="coord-sys" name="coord-sys">
+       <option value="EPSG:3857">Web Mercator (3857)</option>
+       <option value="EPSG:3111">VicGrid (3111)</option>
+       <option value="EPSG:28355">MGA Zone 55 (28355)</option>
+       <option value="EPSG:28354">MGA Zone 54 (28354)</option>
+       <option value="EPSG:4283">GDA 94 (4283)</option>
+       <option value="EPSG:4326">WGS 84 (4326)</option>
+    </select>
+    <label for="fcount">Maximum Returned Features</label>
+    <select name="fcount">
+       <option value="1" >1</option>
+       <option value="10" >10</option>
+       <option value="20" >20</option>
+       <option value="50" >50</option>
+       <option value="100" >100</option>
+       <option value="250" >250</option>
+       <option value="500" >500</option>
+    </select>
+
+    <label for="format">Download Format</label>
+    <select id="format" name=format">
+       <option value="GML2">GML2</option>
+       <option value="application/json">GeoJSON</option>
+       <option value="SHAPE-ZIP">Shapefile ZIP</option>
+       <option value="OGR-MIF">MapInfo MIF File Zipped</option>
+       <option value="OGR-TAB">MapInfo TAB File Zipped</option>
+       <option value="DXF-ZIP">Drawing Exchange Format DXF Zipped</option>
+       <option value="KML">Keyhole Markup Lang (KML)</option>
+    </select>
+    <br>
+    <a id="submit" class="btn">Download</a>
+    </div>
+    <div class="span7">
+       <div id="map"  style="height: 300px"></div>
+       <!-- a id="drawbbox" class="btn drawbbox">Draw Rectangle</a><a class="btn drawpoint">Create Point</a> --> 
+    </div>
+</div>
+
+
+{% resource 'wfs_basic/wfs_javascript' %}
+
+{% endblock %}
